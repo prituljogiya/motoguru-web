@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Motoguru Web (Next.js)
 
-## Getting Started
+Static marketing site rebuilt from the Motoguru WordPress site. Ready to deploy to any domain host.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build static files
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Output is written to the `out/` folder. Upload that folder to your host (cPanel public_html, Netlify, S3, etc.).
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The contact page posts to Formspree. Create a form at [formspree.io](https://formspree.io), then add:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# .env.local
+NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
+```
 
-## Deploy on Vercel
+Rebuild after setting the env var so it is baked into the static export.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel / Netlify
+- Connect this repo (or upload the project)
+- Build command: `npm run build`
+- Output directory: `out`
+- Attach your custom domain in the host dashboard
+
+### cPanel / any static host
+1. Run `npm run build` locally
+2. Upload the contents of `out/` to `public_html` (or your domain folder)
+3. Point DNS A/CNAME records to the host
+
+## Project map
+
+- `src/app/` — pages (Home, About, Contact, Merchant, FAQ, Blogs, Privacy, Terms)
+- `content/blog/` — markdown blog posts
+- `public/images/` — media copied from WordPress uploads
+- `src/content/site.ts` — shared copy, nav, FAQs
+
+WordPress reference (unchanged): `C:\xampp\htdocs\motoguru`

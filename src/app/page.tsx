@@ -1,103 +1,193 @@
 import Image from "next/image";
+import { ButtonLink } from "@/components/ButtonLink";
+import { FaqAccordion } from "@/components/FaqAccordion";
+import {
+  faqs,
+  partnerLogos,
+  services,
+  site,
+  testimonials,
+  whyChoose,
+} from "@/content/site";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(249,155,39,0.16),transparent_42%),linear-gradient(to_bottom,transparent,rgba(246,244,241,0.9))]" />
+        <div className="container-page relative grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+          <div>
+            <p className="reveal mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent-dark">
+              {site.tagline}
+            </p>
+            <h1 className="reveal font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.08] tracking-tight text-ink md:text-5xl lg:text-[3.4rem]">
+              Transparent Car Care, Powered Digitally
+            </h1>
+            <p className="reveal-delay mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+              {site.description}
+            </p>
+            <div className="reveal-delay mt-8 flex flex-wrap gap-3">
+              <ButtonLink href="/contact-us/">Get Started</ButtonLink>
+              <ButtonLink href="/about-us/" variant="ghost">
+                About Motoguru
+              </ButtonLink>
+            </div>
+            <p className="mt-6 text-sm font-medium text-foreground/80">
+              +8k Happy users · 4.9/5 from 2k+ reviews
+            </p>
+          </div>
+          <div className="reveal relative mx-auto w-full max-w-md">
+            <div className="absolute -inset-6 rounded-[2rem] bg-accent/20 blur-2xl" />
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/images/mg-phone-graphic.png"
+              alt="Motoguru app preview"
+              width={800}
+              height={840}
+              className="relative mx-auto drop-shadow-2xl"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </section>
+
+      <section className="border-y border-line bg-surface/70 py-8 overflow-hidden">
+        <p className="mb-5 text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+          Trusted by India&apos;s top garages
+        </p>
+        <div className="relative">
+          <div className="marquee-track px-8">
+            {[...partnerLogos, ...partnerLogos].map((logo, i) => (
+              <Image
+                key={`${logo.alt}-${i}`}
+                src={logo.src}
+                alt={logo.alt}
+                width={140}
+                height={70}
+                className="h-12 w-auto object-contain opacity-80"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="container-page">
+          <div className="mb-10 max-w-2xl">
+            <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
+              Services built around clarity
+            </h2>
+            <p className="mt-3 text-muted">
+              From periodic care to complex repairs, Motoguru helps you choose the right workshop with confidence.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {services.map((service, index) => (
+              <article
+                key={service.title}
+                className="group overflow-hidden rounded-3xl border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(45,0,0,0.08)]"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={800}
+                  height={800}
+                  className="aspect-[4/3] w-full object-cover"
+                />
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
+                    {service.subtitle}
+                  </p>
+                  <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">{service.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-ink text-white">
+        <div className="container-page grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+              Why Choose Us
+            </h2>
+            <p className="mt-4 max-w-lg text-white/70">
+              MotoGuru helps you make informed decisions with the right workshops, transparent pricing, and complete visibility every step of the way.
+            </p>
+            <div className="mt-8 space-y-5">
+              {whyChoose.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-accent">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/images/happy-user-technician-v2.png"
+            alt="Happy Motoguru customer"
+            width={800}
+            height={1000}
+            className="mx-auto max-w-md rounded-[2rem] object-cover"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="container-page">
+          <h2 className="mb-8 text-center font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
+            Stories From Car Owners Who Chose Clarity
+          </h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            {testimonials.map((t) => (
+              <blockquote
+                key={t.name + t.quote.slice(0, 20)}
+                className="rounded-3xl border border-line bg-surface p-6"
+              >
+                <p className="text-sm leading-relaxed text-muted">&ldquo;{t.quote}&rdquo;</p>
+                <footer className="mt-4 text-sm font-semibold text-ink">
+                  {t.name}
+                  <span className="font-normal text-muted"> · {t.place}</span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad border-t border-line">
+        <div className="container-page">
+          <h2 className="mb-8 text-center font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
+            Everything you need to know
+          </h2>
+          <FaqAccordion items={faqs.slice(0, 5)} />
+          <div className="mt-8 text-center">
+            <ButtonLink href="/frequently-asked-questions/" variant="ghost">
+              View all FAQs
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="container-page overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(135deg,#2d0000,#4a1a10)] px-6 py-12 text-center text-white md:px-12">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+            Ready for transparent car care?
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-white/70">
+            Compare verified garages, approve clear estimates, and track your service with Motoguru.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <ButtonLink href="/contact-us/">Talk to us</ButtonLink>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
