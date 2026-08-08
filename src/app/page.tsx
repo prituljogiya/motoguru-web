@@ -1,14 +1,7 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import {
-  faqs,
-  partnerLogos,
-  services,
-  site,
-  testimonials,
-  whyChoose,
-} from "@/content/site";
+import { faqs, services, site, whyChoose } from "@/content/site";
 
 export default function HomePage() {
   return (
@@ -50,26 +43,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface/70 py-8 overflow-hidden">
-        <p className="mb-5 text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-          Trusted by India&apos;s top garages
-        </p>
-        <div className="relative">
-          <div className="marquee-track px-8">
-            {[...partnerLogos, ...partnerLogos].map((logo, i) => (
-              <Image
-                key={`${logo.alt}-${i}`}
-                src={logo.src}
-                alt={logo.alt}
-                width={140}
-                height={70}
-                className="h-12 w-auto object-contain opacity-80"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section-pad">
         <div className="container-page">
           <div className="mb-10 max-w-2xl">
@@ -77,14 +50,15 @@ export default function HomePage() {
               Services built around clarity
             </h2>
             <p className="mt-3 text-muted">
-              From periodic care to complex repairs, Motoguru helps you choose the right workshop with confidence.
+              From periodic care to complex repairs, Motoguru helps you choose the right workshop with
+              confidence.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-3 md:gap-10">
             {services.map((service, index) => (
               <article
                 key={service.title}
-                className="group overflow-hidden rounded-3xl border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(45,0,0,0.08)]"
+                className="group"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <Image
@@ -94,7 +68,7 @@ export default function HomePage() {
                   height={800}
                   className="aspect-[4/3] w-full object-cover"
                 />
-                <div className="p-6">
+                <div className="pt-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
                     {service.subtitle}
                   </p>
@@ -110,53 +84,112 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad bg-ink text-white">
-        <div className="container-page grid items-center gap-10 md:grid-cols-2">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
               Why Choose Us
-            </h2>
-            <p className="mt-4 max-w-lg text-white/70">
-              MotoGuru helps you make informed decisions with the right workshops, transparent pricing, and complete visibility every step of the way.
             </p>
-            <div className="mt-8 space-y-5">
-              {whyChoose.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-accent">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">{item.description}</p>
-                </div>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+              Professional car care with complete clarity
+            </h2>
+            <p className="mt-4 max-w-xl text-white/70">
+              Motoguru is built for car owners who want verified workshops, honest pricing, and full
+              visibility — without pressure or surprises.
+            </p>
+            <ol className="mt-10 space-y-0 divide-y divide-white/10 border-y border-white/10">
+              {whyChoose.map((item, index) => (
+                <li key={item.title} className="grid grid-cols-[auto_1fr] gap-5 py-5">
+                  <span className="font-[family-name:var(--font-display)] text-sm font-semibold text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-white/65">{item.description}</p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
           <Image
             src="/images/happy-user-technician-v2.png"
             alt="Happy Motoguru customer"
             width={800}
             height={1000}
-            className="mx-auto max-w-md rounded-[2rem] object-cover"
+            className="mx-auto w-full max-w-md object-cover"
           />
         </div>
       </section>
 
-      <section className="section-pad">
-        <div className="container-page">
-          <h2 className="mb-8 text-center font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
-            Stories From Car Owners Who Chose Clarity
-          </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            {testimonials.map((t) => (
-              <blockquote
-                key={t.name + t.quote.slice(0, 20)}
-                className="rounded-3xl border border-line bg-surface p-6"
+      <section className="section-pad overflow-hidden">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-dark">
+              Get the app
+            </p>
+            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
+              Download Motoguru
+            </h2>
+            <p className="mt-4 max-w-md text-muted">
+              Book verified workshops, compare estimates, and track your service — all from your phone.
+              Available on Google Play and the App Store.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={site.playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
+                aria-label="Get it on Google Play"
               >
-                <p className="text-sm leading-relaxed text-muted">&ldquo;{t.quote}&rdquo;</p>
-                <footer className="mt-4 text-sm font-semibold text-ink">
-                  {t.name}
-                  <span className="font-normal text-muted"> · {t.place}</span>
-                </footer>
-              </blockquote>
-            ))}
+                <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" aria-hidden>
+                  <path
+                    fill="currentColor"
+                    d="M3.61 1.81 13.79 12 3.61 22.19a1 1 0 0 1-.61-.92V2.73a1 1 0 0 1 .61-.92Zm10.89 10.9 2.3 2.3-10.94 6.33 8.64-8.63Zm3.2-3.2 2.81 1.63a1 1 0 0 1 0 1.73l-2.81 1.63L15.21 12l2.49-2.49ZM5.86 2.66 16.8 8.99l-2.3 2.3-8.64-8.63Z"
+                  />
+                </svg>
+                <span className="text-left leading-tight">
+                  <span className="block text-[10px] uppercase tracking-wide text-white/70">
+                    Get it on
+                  </span>
+                  <span className="block text-sm font-semibold">Google Play</span>
+                </span>
+              </a>
+              <a
+                href={site.appStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
+                aria-label="Download on the App Store"
+              >
+                <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" aria-hidden>
+                  <path
+                    fill="currentColor"
+                    d="M18.7 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1 1-3.9 2.5-1.7 2.9-.4 7.2 1.2 9.6.8 1.1 1.7 2.4 3 2.3 1.2-.1 1.6-.7 3.1-.7s1.8.7 3.1.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.5-1-2.7-3.4zM15.5 5.3c.7-.8 1.1-1.9 1-3-.9.1-2 .7-2.7 1.5-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.4z"
+                  />
+                </svg>
+                <span className="text-left leading-tight">
+                  <span className="block text-[10px] uppercase tracking-wide text-white/70">
+                    Download on the
+                  </span>
+                  <span className="block text-sm font-semibold">App Store</span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="absolute -inset-4 rounded-[2rem] bg-accent/15 blur-2xl" />
+            <video
+              className="relative w-full"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/images/mg-phone-graphic.png"
+            >
+              <source src="/images/motoguru-download-app-website-graphic.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
@@ -176,15 +209,23 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-page overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(135deg,#2d0000,#4a1a10)] px-6 py-12 text-center text-white md:px-12">
+        <div className="container-page overflow-hidden bg-[linear-gradient(135deg,#2d0000,#4a1a10)] px-6 py-12 text-center text-white md:px-12">
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
             Ready for transparent car care?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-white/70">
             Compare verified garages, approve clear estimates, and track your service with Motoguru.
           </p>
-          <div className="mt-8 flex justify-center">
-            <ButtonLink href="/contact-us/">Talk to us</ButtonLink>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <ButtonLink href="/contact-us/">Contact us</ButtonLink>
+            <a
+              href={site.playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:border-accent hover:text-accent"
+            >
+              Download the app
+            </a>
           </div>
         </div>
       </section>

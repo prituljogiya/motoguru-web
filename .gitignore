@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# cPanel SMTP secrets (keep example only)
+/public/api/smtp-config.php
+/out/api/smtp-config.php
+
 # vercel
 .vercel
 

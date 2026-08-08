@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
-import { differentiators, partnerLogos } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -38,50 +37,6 @@ export default function AboutPage() {
             height={700}
             className="rounded-3xl object-cover"
           />
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-surface/70 py-10 overflow-hidden">
-        <p className="mb-5 text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-          Trusted by India&apos;s top garages
-        </p>
-        <div className="marquee-track px-8">
-          {[...partnerLogos, ...partnerLogos].map((logo, i) => (
-            <Image
-              key={`${logo.alt}-${i}`}
-              src={logo.src}
-              alt={logo.alt}
-              width={140}
-              height={70}
-              className="h-12 w-auto object-contain opacity-80"
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-page">
-          <h2 className="mb-10 text-center font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
-            What Sets Us Apart
-          </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {differentiators.map((item) => (
-              <article key={item.number} className="rounded-3xl border border-line bg-surface p-6">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={600}
-                  height={600}
-                  className="mb-5 aspect-square rounded-2xl object-cover"
-                />
-                <p className="text-sm font-semibold text-accent-dark">{item.number}</p>
-                <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

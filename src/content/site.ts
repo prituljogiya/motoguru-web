@@ -6,6 +6,8 @@ export const site = {
   email: "support@motoguru.in",
   phone: "+91 00000 00000",
   address: "MotoGuru Pvt. Ltd. 123, Tech Park Road, XYZ East, Mumbai — 000000, India",
+  playStoreUrl: "https://play.google.com/store/apps/details?id=in.motoguru.app",
+  appStoreUrl: "https://apps.apple.com/app/motoguru/id0000000000",
 };
 
 export const navLinks = [
@@ -15,15 +17,6 @@ export const navLinks = [
   { href: "/blogs/", label: "Blogs" },
   { href: "/frequently-asked-questions/", label: "FAQ" },
   { href: "/contact-us/", label: "Contact Us" },
-] as const;
-
-export const partnerLogos = [
-  { src: "/images/bosch-logo-mdp-1.png", alt: "Bosch" },
-  { src: "/images/textar-logo-mdp-2.png", alt: "Textar" },
-  { src: "/images/sachs-logo-mdp-3.png", alt: "Sachs" },
-  { src: "/images/ntn-logo-mdp-4.png", alt: "NTN" },
-  { src: "/images/mahle-logo-mdp-5.png", alt: "Mahle" },
-  { src: "/images/valeo-logo-mdp-6.png", alt: "Valeo" },
 ] as const;
 
 export const services = [
@@ -52,70 +45,34 @@ export const services = [
 
 export const whyChoose = [
   {
-    title: "Find the Right Workshop",
+    title: "Verified workshops only",
     description:
-      "Get matched with verified, high-quality garages that best fit your car’s needs and your preferences.",
+      "Every garage on Motoguru is screened for capability, service quality, and customer feedback before listing.",
   },
   {
-    title: "Live Updates",
+    title: "Clear, itemized estimates",
     description:
-      "Stay informed with real-time status updates and progress visibility throughout your car care journey.",
+      "Review what’s included before you book. No hidden add-ons — additional work needs your approval first.",
   },
   {
-    title: "Transparent Pricing",
-    description: "See transparent pricing before choosing workshops.",
+    title: "Live job visibility",
+    description:
+      "Track progress with real-time updates so you always know where your car stands, from drop-off to delivery.",
+  },
+  {
+    title: "You stay in control",
+    description:
+      "Compare options, pick the workshop that fits, approve costs, and stay informed until the job is done.",
   },
 ] as const;
 
-export const differentiators = [
-  {
-    number: "01",
-    title: "Choice Without Compromise",
-    description:
-      "MotoGuru lets users explore verified garages, compare pricing, ratings, distance, and service inclusions, and choose what suits them best.",
-    image: "/images/no-compromise-v1.png",
-  },
-  {
-    number: "02",
-    title: "Transparency at Every Step",
-    description:
-      "Upfront, itemized estimates and real-time updates ensure customers always know what’s happening before, during, and after service.",
-    image: "/images/transparency-v1.png",
-  },
-  {
-    number: "03",
-    title: "Control From Start to Finish",
-    description:
-      "No forced assignments or hidden changes. Users approve costs, track progress, and stay in control until completion.",
-    image: "/images/start-end-v1.png",
-  },
-] as const;
-
-export const testimonials = [
-  {
-    quote:
-      "Motoguru helped me understand my car issue clearly and compare trusted garages confidently without pressure or hidden costs anywhere during decision making.",
-    name: "Rahul G.",
-    place: "Mumbai",
-  },
-  {
-    quote:
-      "Transparent pricing, clear guidance, and timely updates made the entire experience smooth, trustworthy, and stress free from start to finish for me.",
-    name: "Anita S.",
-    place: "Mumbai",
-  },
-  {
-    quote:
-      "MotoGuru gave honest explanations, reliable garage options, and full visibility so I could choose confidently without rushing into unnecessary repairs ever again.",
-    name: "Vikram K.",
-    place: "Mumbai",
-  },
-  {
-    quote:
-      "I liked the clarity, transparency, and support Motoguru provided while helping me evaluate workshops and costs calmly at my own pace comfortably.",
-    name: "Neha R.",
-    place: "Mumbai",
-  },
+export const partnerServices = [
+  "Periodic Service",
+  "Mechanical Repair",
+  "Denting & Painting",
+  "AC Service",
+  "Car Spa Service",
+  "Other",
 ] as const;
 
 export const merchantBenefits = [
