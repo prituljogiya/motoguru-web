@@ -16,7 +16,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-line/60 bg-white/75 backdrop-blur-md">
       <div className="container-page flex h-[4.25rem] items-center justify-between gap-4">
         <Link href="/" className="relative z-10 shrink-0" aria-label={site.name}>
           <Image

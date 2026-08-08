@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree, Sora } from "next/font/google";
+import { BackgroundDecor } from "@/components/BackgroundDecor";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/content/site";
@@ -33,8 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${display.variable} ${body.variable} antialiased`}>
+        <BackgroundDecor variant="page" />
         <Header />
-        <main>{children}</main>
+        <main className="relative z-[1]">{children}</main>
         <Footer />
       </body>
     </html>

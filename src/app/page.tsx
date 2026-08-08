@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BackgroundDecor } from "@/components/BackgroundDecor";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { faqs, services, site, whyChoose } from "@/content/site";
@@ -7,8 +8,8 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(249,155,39,0.16),transparent_42%),linear-gradient(to_bottom,transparent,rgba(246,244,241,0.9))]" />
-        <div className="container-page relative grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+        <BackgroundDecor variant="hero" />
+        <div className="container-page relative z-[1] grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
           <div>
             <p className="reveal mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent-dark">
               {site.tagline}
@@ -30,7 +31,9 @@ export default function HomePage() {
             </p>
           </div>
           <div className="reveal relative mx-auto w-full max-w-md">
-            <div className="absolute -inset-6 rounded-[2rem] bg-accent/20 blur-2xl" />
+            <div className="absolute -inset-8 rounded-full bg-accent/15 blur-3xl" />
+            <div className="decor-float absolute -left-4 top-10 hidden h-14 w-14 rounded-2xl border border-white/70 bg-white/55 shadow-[0_12px_30px_rgba(45,0,0,0.08)] md:block" />
+            <div className="decor-float-slow absolute -right-2 bottom-16 hidden h-10 w-10 rounded-full border border-accent/40 bg-accent/20 md:block" />
             <Image
               src="/images/mg-phone-graphic.png"
               alt="Motoguru app preview"
@@ -44,7 +47,8 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-page">
+        <BackgroundDecor variant="section" />
+        <div className="container-page relative z-[1]">
           <div className="mb-10 max-w-2xl">
             <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
               Services built around clarity
@@ -83,8 +87,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-pad bg-ink text-white">
-        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="section-pad relative overflow-hidden bg-ink text-white">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          aria-hidden
+          style={{
+            background:
+              "radial-gradient(circle at 85% 20%, rgba(249,155,39,0.28), transparent 40%), radial-gradient(circle at 10% 80%, rgba(249,155,39,0.12), transparent 35%)",
+          }}
+        />
+        <div className="container-page relative z-[1] grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
               Why Choose Us
@@ -123,7 +135,8 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad overflow-hidden">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+        <BackgroundDecor variant="section" />
+        <div className="container-page relative z-[1] grid items-center gap-10 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-dark">
               Get the app
@@ -208,7 +221,8 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad border-t border-line">
-        <div className="container-page">
+        <BackgroundDecor variant="section" />
+        <div className="container-page relative z-[1]">
           <h2 className="mb-8 text-center font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
             Everything you need to know
           </h2>
@@ -222,14 +236,22 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad">
-        <div className="container-page overflow-hidden bg-[linear-gradient(135deg,#2d0000,#4a1a10)] px-6 py-12 text-center text-white md:px-12">
-          <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+        <div className="container-page relative overflow-hidden bg-[linear-gradient(135deg,#2d0000,#4a1a10)] px-6 py-12 text-center text-white md:px-12">
+          <div
+            className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/25 blur-2xl"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute -bottom-12 -left-8 h-36 w-36 rounded-full bg-accent/15 blur-2xl"
+            aria-hidden
+          />
+          <h2 className="relative font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
             Ready for transparent car care?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/70">
+          <p className="relative mx-auto mt-3 max-w-xl text-white/70">
             Compare verified garages, approve clear estimates, and track your service with Motoguru.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="relative mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/contact-us/">Contact us</ButtonLink>
             <a
               href={site.playStoreUrl}

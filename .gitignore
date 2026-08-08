@@ -38,6 +38,9 @@ yarn-error.log*
 /public/api/smtp-config.php
 /out/api/smtp-config.php
 
+# local analysis scratch
+/digimedia-analysis/
+
 # vercel
 .vercel
 
