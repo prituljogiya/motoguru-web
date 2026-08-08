@@ -143,12 +143,26 @@ export default function HomePage() {
                 className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
                 aria-label="Get it on Google Play"
               >
-                <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" aria-hidden>
-                  <path
-                    fill="currentColor"
-                    d="M3.61 1.81 13.79 12 3.61 22.19a1 1 0 0 1-.61-.92V2.73a1 1 0 0 1 .61-.92Zm10.89 10.9 2.3 2.3-10.94 6.33 8.64-8.63Zm3.2-3.2 2.81 1.63a1 1 0 0 1 0 1.73l-2.81 1.63L15.21 12l2.49-2.49ZM5.86 2.66 16.8 8.99l-2.3 2.3-8.64-8.63Z"
-                  />
-                </svg>
+                <span className="flex h-8 w-8 items-center justify-center" aria-hidden>
+                  <svg width="28" height="28" viewBox="0 0 512 512" fill="none">
+                    <path
+                      fill="#34A853"
+                      d="M325.3 234.3 104.6 13.6C95.6 22.6 90 35.2 90 50.3v411.4c0 15.1 5.6 27.7 14.6 36.7l220.7-220.7 58.3-58.3-58.3-58.1Z"
+                    />
+                    <path
+                      fill="#FBBC04"
+                      d="m383.6 292.6-58.3-58.3-58.3 58.3 58.3 58.3 102.9 59.4c12.1-6.9 20.3-19.4 20.3-35.6 0-7.3-1.8-14.1-5-20L383.6 292.6Z"
+                    />
+                    <path
+                      fill="#4285F4"
+                      d="M383.6 219.4 325.3 277.7l58.3 58.3 102.9-59.4c3.2-5.9 5-12.7 5-20 0-16.2-8.2-28.7-20.3-35.6l-87.6-1.6Z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M325.3 277.7 104.6 498.4c9 9 21.6 13.6 35.7 13.6 8.3 0 16.3-1.9 23.6-5.6l219.7-126.9-58.3-58.3-43.5-43.5Z"
+                    />
+                  </svg>
+                </span>
                 <span className="text-left leading-tight">
                   <span className="block text-[10px] uppercase tracking-wide text-white/70">
                     Get it on
@@ -163,12 +177,11 @@ export default function HomePage() {
                 className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
                 aria-label="Download on the App Store"
               >
-                <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" aria-hidden>
-                  <path
-                    fill="currentColor"
-                    d="M18.7 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1 1-3.9 2.5-1.7 2.9-.4 7.2 1.2 9.6.8 1.1 1.7 2.4 3 2.3 1.2-.1 1.6-.7 3.1-.7s1.8.7 3.1.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.5-1-2.7-3.4zM15.5 5.3c.7-.8 1.1-1.9 1-3-.9.1-2 .7-2.7 1.5-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.4z"
-                  />
-                </svg>
+                <span className="flex h-8 w-8 items-center justify-center" aria-hidden>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.365 1.43c0 1.14-.463 2.21-1.247 3.01-.814.83-2.17 1.47-3.305 1.39-.146-1.12.42-2.29 1.21-3.08.83-.84 2.25-1.44 3.342-1.32zM20.73 17.2c-.59 1.36-.87 1.96-1.63 3.16-1.06 1.66-2.55 3.73-4.4 3.74-1.64.01-2.07-1.07-4.3-1.06-2.24.01-2.71 1.08-4.35 1.07-1.85-.01-3.27-1.89-4.33-3.55C-.07 16.9-.96 12.1.92 8.96c1.33-2.23 3.43-3.53 5.4-3.53 2.01 0 3.28 1.1 4.94 1.1 1.6 0 2.58-1.11 4.95-1.11 1.77 0 3.64 1.02 4.96 2.78-4.36 2.39-3.66 8.61-.44 8.99z" />
+                  </svg>
+                </span>
                 <span className="text-left leading-tight">
                   <span className="block text-[10px] uppercase tracking-wide text-white/70">
                     Download on the
