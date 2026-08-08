@@ -48,12 +48,31 @@ Then set `NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact.php` and upload `api/contact
 
 ## Build & deploy
 
-### Node / Vercel
+### Node / Vercel (review / production)
+**One-click import:** https://vercel.com/new/import?s=https://github.com/prituljogiya/motoguru-web
+
+After import, add these **Production** env vars in Vercel → Settings → Environment Variables:
+
+```
+EMAIL_HOST=mail.motoguru.in
+EMAIL_PORT=465
+EMAIL_USER=enquiry@motoguru.in
+EMAIL_PASS=your-password
+EMAIL_SECURE=ssl
+EMAIL_FROM=enquiry@motoguru.in
+EMAIL_FROM_NAME=Motoguru Website
+EMAIL_TO=enquiry@motoguru.in
+NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact/
+```
+
+Then **Redeploy** from the Deployments tab. Your preview URL will look like:
+`https://motoguru-web-prituljogiyas-projects.vercel.app`
+
 ```bash
 npm run build
 npm start
 ```
-Add `EMAIL_*` in the host env. Optional helper (requires `npx vercel login` + `npx vercel link`):
+Optional CLI helper (requires `npx vercel login` + `npx vercel link`):
 ```bash
 npm run smtp:vercel-env
 npx vercel --prod
