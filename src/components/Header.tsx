@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navLinks, site } from "@/content/site";
+import { SiteLogo } from "@/components/SiteLogo";
+import { navLinks } from "@/content/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -17,17 +17,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/60 bg-white/75 backdrop-blur-md">
-      <div className="container-page flex h-[4.25rem] items-center justify-between gap-4">
-        <Link href="/" className="relative z-10 shrink-0" aria-label={site.name}>
-          <Image
-            src="/images/mg-2026-web-logo.png"
-            alt={site.name}
-            width={160}
-            height={76}
-            className="h-10 w-auto"
-            priority
-          />
-        </Link>
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
+        <SiteLogo height={40} priority />
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navLinks.map((link) => (

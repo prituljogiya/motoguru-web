@@ -1,19 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SiteLogo } from "@/components/SiteLogo";
 import { navLinks, site } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-ink text-white">
+    <footer className="relative z-[1] border-t border-line bg-ink text-white">
       <div className="container-page section-pad grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <Image
-            src="/images/mg-2026-web-logo.png"
-            alt={site.name}
-            width={160}
-            height={76}
-            className="mb-4 h-10 w-auto brightness-0 invert"
-          />
+          <div className="mb-4">
+            <SiteLogo height={44} inverted href="/" />
+          </div>
           <p className="max-w-sm text-sm leading-relaxed text-white/70">
             {site.description}
           </p>
