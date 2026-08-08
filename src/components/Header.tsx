@@ -18,7 +18,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line/60 bg-white/75 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
-        <SiteLogo height={40} priority />
+        <SiteLogo height={48} priority />
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navLinks.map((link) => (
