@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 import path from "path";
 
+const isCpanel = process.env.CPANEL_BUILD === "1";
+
 const nextConfig: NextConfig = {
-  // Server mode so /api/contact can send mail via SMTP (nodemailer).
-  // For pure static cPanel uploads, set NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact.php
-  // and generate public/api/smtp-config.php with `npm run smtp:config`.
+  // CPANEL_BUILD=1 → static export for cPanel (forms use /api/contact.php SMTP).
+  // Default → Node server so /api/contact (nodemailer) works on Vercel/Node hosts.
+  ...(isCpanel ? { output: "export" as const } : {}),
   images: {
     unoptimized: true,
   },

@@ -48,18 +48,28 @@ Then set `NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact.php` and upload `api/contact
 
 ## Build & deploy
 
+### Node / Vercel
 ```bash
 npm run build
 npm start
 ```
+Add `EMAIL_*` in the host env. Optional helper (requires `npx vercel login` + `npx vercel link`):
+```bash
+npm run smtp:vercel-env
+npx vercel --prod
+```
 
-### Vercel
-- Framework: Next.js
-- Env vars: add the `EMAIL_*` values in the Vercel project settings
+### cPanel (recommended for motoguru.in)
+```bash
+npm run build:cpanel
+```
+Upload **everything inside** `out/` to `public_html` (replace the under-construction page).
 
-### cPanel (Node or PHP)
-- Node app: run `npm run build && npm start`, set the same env vars
-- Or static + PHP: use `smtp:config` and `/api/contact.php` as above
+This build includes:
+- Static site pages
+- `/api/contact.php` + `/api/smtp-config.php` (SMTP to `mail.motoguru.in`)
+
+Forms submit to `/api/contact.php` and email `enquiry@motoguru.in`.
 
 ## Project map
 
