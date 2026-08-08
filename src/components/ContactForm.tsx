@@ -5,7 +5,7 @@ import { partnerServices } from "@/content/site";
 
 type FormType = "enquiry" | "partner";
 
-const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact.php";
+const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact/";
 
 function randomCaptcha() {
   const a = Math.floor(Math.random() * 8) + 2;

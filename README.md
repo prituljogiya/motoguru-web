@@ -1,85 +1,70 @@
 # Motoguru Web (Next.js)
 
-Static marketing site rebuilt from the Motoguru WordPress site. Ready to deploy to any domain host.
+Marketing site for Motoguru with contact forms that send mail over SMTP.
 
 ## Local development
 
 ```bash
 npm install
+cp .env.example .env   # then fill EMAIL_PASS
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Build static files
+## SMTP (.env)
+
+Create `.env` (never commit secrets):
+
+```bash
+EMAIL_HOST=mail.motoguru.in
+EMAIL_PORT=465
+EMAIL_USER=enquiry@motoguru.in
+EMAIL_PASS=your-password
+EMAIL_SECURE=ssl
+EMAIL_FROM=enquiry@motoguru.in
+EMAIL_FROM_NAME=Motoguru Website
+EMAIL_TO=enquiry@motoguru.in
+NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact
+```
+
+Contact forms POST to `/api/contact`, which sends mail with **nodemailer** using those variables.
+
+Verify SMTP:
+
+```bash
+npm run smtp:test
+```
+
+### cPanel PHP fallback
+
+If you deploy a static export and need PHP mail on cPanel:
+
+```bash
+npm run smtp:config   # writes public/api/smtp-config.php from .env
+```
+
+Then set `NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact.php` and upload `api/contact.php` + `api/smtp-config.php` with the site.
+
+## Build & deploy
 
 ```bash
 npm run build
+npm start
 ```
 
-Output is written to the `out/` folder. Upload that folder to your host (cPanel `public_html`, Netlify, S3, etc.).
+### Vercel
+- Framework: Next.js
+- Env vars: add the `EMAIL_*` values in the Vercel project settings
 
-## Contact forms + cPanel SMTP
-
-The Contact page has two forms:
-
-1. **General Enquiry** — full name, phone, email, city, message, security check
-2. **Join as Partner** — workshop name, owner, phone, email, city, services offered, security check
-
-Forms POST to `/api/contact.php`, which sends mail over SMTP using your cPanel email account.
-
-### Setup on cPanel
-
-1. Create an email account in **cPanel → Email Accounts** (e.g. `noreply@yourdomain.com`)
-2. After `npm run build`, upload the `out/` folder to `public_html`
-3. Ensure `public_html/api/contact.php` and `smtp-config.example.php` are present
-4. Copy the example config:
-
-```bash
-cp api/smtp-config.example.php api/smtp-config.php
-```
-
-5. Edit `api/smtp-config.php`:
-
-```php
-return [
-    'smtp_host' => 'mail.yourdomain.com', // or host from cPanel → Connect Devices
-    'smtp_port' => 465,
-    'smtp_secure' => 'ssl', // use 'tls' with port 587 if preferred
-    'smtp_user' => 'noreply@yourdomain.com',
-    'smtp_pass' => 'your-email-password',
-    'from_email' => 'noreply@yourdomain.com',
-    'from_name' => 'Motoguru Website',
-    'to_email' => 'support@motoguru.in',
-    'timeout' => 30,
-];
-```
-
-Optional: set `NEXT_PUBLIC_CONTACT_ENDPOINT` before build if the PHP endpoint lives at a different URL.
-
-## App download links
-
-Edit Play Store / App Store URLs in `src/content/site.ts` (`playStoreUrl`, `appStoreUrl`).
-
-## Deploy
-
-### Vercel / Netlify
-- Connect this repo (or upload the project)
-- Build command: `npm run build`
-- Output directory: `out`
-- Attach your custom domain in the host dashboard
-- Note: PHP SMTP only works on hosts that run PHP (e.g. cPanel). On pure static hosts, point `NEXT_PUBLIC_CONTACT_ENDPOINT` at a PHP-capable URL.
-
-### cPanel / any static host
-1. Run `npm run build` locally
-2. Upload the contents of `out/` to `public_html` (or your domain folder)
-3. Configure `api/smtp-config.php` as above
-4. Point DNS A/CNAME records to the host
+### cPanel (Node or PHP)
+- Node app: run `npm run build && npm start`, set the same env vars
+- Or static + PHP: use `smtp:config` and `/api/contact.php` as above
 
 ## Project map
 
-- `src/app/` — pages (Home, About, Contact, Merchant, FAQ, Blogs, Privacy, Terms)
-- `content/blog/` — markdown blog posts
-- `public/images/` — media copied from WordPress uploads
-- `public/api/` — cPanel PHP contact + SMTP handler
+- `src/app/` — pages
+- `src/app/api/contact/` — SMTP API route (nodemailer)
+- `public/api/` — optional cPanel PHP SMTP handler
 - `src/content/site.ts` — shared copy, nav, FAQs, app links
+- `.env` — SMTP credentials (gitignored)
