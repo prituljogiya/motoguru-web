@@ -12,7 +12,8 @@
     "smtp:config": "node scripts/generate-smtp-config.js",
     "smtp:test": "node scripts/test-smtp.js",
     "smtp:vercel-env": "bash scripts/vercel-set-env.sh",
-    "deploy:vercel": "vercel --prod"
+    "deploy:vercel": "vercel --prod",
+    "deploy:vercel-hook": "bash scripts/trigger-vercel-deploy.sh"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

@@ -61,6 +61,11 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
         © {new Date().getFullYear()} {site.name}. All rights reserved.
+        {process.env.NEXT_PUBLIC_BUILD_ID ? (
+          <span className="mt-1 block text-[10px] text-white/25">
+            Build {process.env.NEXT_PUBLIC_BUILD_ID}
+          </span>
+        ) : null}
       </div>
     </footer>
   );

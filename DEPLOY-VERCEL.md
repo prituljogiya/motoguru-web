@@ -44,4 +44,35 @@ npm run deploy:vercel
 
 Once imported, every push to `main` redeploys automatically.
 
+For GitHub Actions deploy, add these **repository secrets** (Settings → Secrets → Actions):
+
+| Secret | Where to find it |
+|--------|------------------|
+| `VERCEL_TOKEN` | https://vercel.com/account/tokens |
+| `VERCEL_ORG_ID` | Project Settings → General → Project ID section (team id) |
+| `VERCEL_PROJECT_ID` | Same page — Project ID |
+| `EMAIL_PASS` | Your `enquiry@motoguru.in` mailbox password |
+
+---
+
+## Site still shows old content?
+
+The code on GitHub `main` is correct. If the live site still shows **“Stories From Car Owners”** or **“Trusted by India”**, Vercel has **not** redeployed yet.
+
+**Fix (about 1 minute):**
+
+1. Open https://vercel.com/dashboard → project **motoguru-in**
+2. **Deployments** → latest → **⋯** → **Redeploy**
+3. Turn **Use existing Build Cache** **OFF**
+4. Hard refresh the site (Ctrl+Shift+R / Cmd+Shift+R)
+
+**Verify:** footer shows **Build** with a 7-character git hash (e.g. `Build 7c28562`). You should see **“Download Motoguru”** on the homepage — not the old testimonials section.
+
+**Deploy Hook (no dashboard):** Settings → Git → Deploy Hooks → create hook for `main`, then:
+
+```bash
+export VERCEL_DEPLOY_HOOK_URL="https://api.vercel.com/v1/integrations/deploy/..."
+npm run deploy:vercel-hook
+```
+
 Contact forms use `/api/contact/` (nodemailer + SMTP).
