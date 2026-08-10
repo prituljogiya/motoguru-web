@@ -11,7 +11,8 @@
     "lint": "eslint",
     "smtp:config": "node scripts/generate-smtp-config.js",
     "smtp:test": "node scripts/test-smtp.js",
-    "smtp:vercel-env": "bash scripts/vercel-set-env.sh"
+    "smtp:vercel-env": "bash scripts/vercel-set-env.sh",
+    "deploy:vercel": "vercel --prod"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
