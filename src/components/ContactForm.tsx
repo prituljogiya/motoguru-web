@@ -50,7 +50,20 @@ export function ContactForm() {
         headers: { Accept: "application/json" },
       });
 
-      const payload = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      const raw = await res.text();
+      let payload: { ok?: boolean; error?: string } | null = null;
+      try {
+        payload = raw ? (JSON.parse(raw) as { ok?: boolean; error?: string }) : null;
+      } catch {
+        if (res.status === 404) {
+          throw new Error(
+            "Contact form API was not found. Redeploy the site with email settings (EMAIL_* on Vercel, or contact.php on cPanel)."
+          );
+        }
+        throw new Error(
+          `Server returned an unexpected response (${res.status}). Please email ${site.email} directly.`
+        );
+      }
 
       if (!res.ok || !payload?.ok) {
         throw new Error(payload?.error || "Request failed");

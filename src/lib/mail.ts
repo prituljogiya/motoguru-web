@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
 
 export type ContactPayload = {
   formType: "enquiry" | "partner";
@@ -11,6 +12,12 @@ export type ContactPayload = {
   ownerName?: string;
   services?: string[];
 };
+
+const REQUIRED_ENV = ["EMAIL_HOST", "EMAIL_USER", "EMAIL_PASS"] as const;
+
+export function missingSmtpEnv(): string[] {
+  return REQUIRED_ENV.filter((name) => !process.env[name]?.trim());
+}
 
 function requiredEnv(name: string): string {
   const value = process.env[name]?.trim();
@@ -35,6 +42,27 @@ export function getSmtpConfig() {
     fromName: process.env.EMAIL_FROM_NAME?.trim() || "Motoguru Website",
     toEmail: process.env.EMAIL_TO?.trim() || requiredEnv("EMAIL_USER"),
   };
+}
+
+export function createSmtpTransport() {
+  const smtp = getSmtpConfig();
+  const options: SMTPTransport.Options = {
+    host: smtp.host,
+    port: smtp.port,
+    secure: smtp.secure,
+    auth: {
+      user: smtp.user,
+      pass: smtp.pass,
+    },
+    tls: {
+      minVersion: "TLSv1.2",
+    },
+    connectionTimeout: 20_000,
+    greetingTimeout: 20_000,
+    socketTimeout: 30_000,
+  };
+
+  return nodemailer.createTransport(options);
 }
 
 export function buildEmail(payload: ContactPayload): { subject: string; text: string } {
@@ -73,27 +101,40 @@ export function buildEmail(payload: ContactPayload): { subject: string; text: st
   };
 }
 
+function smtpErrorMessage(error: unknown): string {
+  if (!(error instanceof Error)) {
+    return "Unable to send email right now. Please try again later.";
+  }
+
+  const msg = error.message;
+  if (msg.startsWith("Missing required environment variable")) {
+    return msg;
+  }
+  if (/invalid login|authentication failed|535|534/i.test(msg)) {
+    return "SMTP login failed. Check EMAIL_USER and EMAIL_PASS on the server.";
+  }
+  if (/connect|timeout|econnrefused|enotfound/i.test(msg)) {
+    return "Could not connect to the mail server. Check EMAIL_HOST and EMAIL_PORT.";
+  }
+
+  return "Unable to send email right now. Please try again later.";
+}
+
 export async function sendContactEmail(payload: ContactPayload) {
   const smtp = getSmtpConfig();
   const { subject, text } = buildEmail(payload);
+  const transporter = createSmtpTransport();
 
-  const transporter = nodemailer.createTransport({
-    host: smtp.host,
-    port: smtp.port,
-    secure: smtp.secure,
-    auth: {
-      user: smtp.user,
-      pass: smtp.pass,
-    },
-  });
-
-  await transporter.verify();
-
-  await transporter.sendMail({
-    from: `"${smtp.fromName}" <${smtp.fromEmail}>`,
-    to: smtp.toEmail,
-    replyTo: payload.email,
-    subject,
-    text,
-  });
+  try {
+    await transporter.sendMail({
+      from: `"${smtp.fromName}" <${smtp.fromEmail}>`,
+      to: smtp.toEmail,
+      replyTo: payload.email,
+      subject,
+      text,
+    });
+  } catch (error) {
+    console.error("[smtp]", error);
+    throw new Error(smtpErrorMessage(error));
+  }
 }

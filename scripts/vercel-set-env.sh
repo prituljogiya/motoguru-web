@@ -14,34 +14,39 @@ if [[ ! -f .env ]]; then
   exit 1
 fi
 
-# Load .env (supports simple KEY=VALUE and quoted values)
-set -a
-# shellcheck disable=SC1091
-source <(sed -e '/^#/d' -e '/^$/d' -e 's/\r$//' .env | sed -E "s/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/export \1=\2/")
-set +a
+node <<'NODE'
+const { spawnSync } = require("child_process");
+const path = require("path");
+require("./load-env.js");
 
-VARS=(
-  EMAIL_HOST
-  EMAIL_PORT
-  EMAIL_USER
-  EMAIL_PASS
-  EMAIL_SECURE
-  EMAIL_FROM
-  EMAIL_FROM_NAME
-  EMAIL_TO
-  NEXT_PUBLIC_CONTACT_ENDPOINT
-)
+const vars = [
+  "EMAIL_HOST",
+  "EMAIL_PORT",
+  "EMAIL_USER",
+  "EMAIL_PASS",
+  "EMAIL_SECURE",
+  "EMAIL_FROM",
+  "EMAIL_FROM_NAME",
+  "EMAIL_TO",
+  "NEXT_PUBLIC_CONTACT_ENDPOINT",
+];
 
-for key in "${VARS[@]}"; do
-  val="${!key-}"
-  if [[ -z "$val" ]]; then
-    echo "Skip $key (empty)"
-    continue
-  fi
-  for env_target in production preview development; do
-    echo "Setting $key → $env_target"
-    printf '%s' "$val" | npx vercel env add "$key" "$env_target" --force >/dev/null
-  done
-done
+for (const key of vars) {
+  const val = process.env[key];
+  if (!val) {
+    console.log(`Skip ${key} (empty)`);
+    continue;
+  }
+  for (const envTarget of ["production", "preview", "development"]) {
+    console.log(`Setting ${key} → ${envTarget}`);
+    const result = spawnSync(
+      "npx",
+      ["vercel", "env", "add", key, envTarget, "--force"],
+      { input: val, stdio: ["pipe", "inherit", "inherit"], cwd: path.join(__dirname, "..") }
+    );
+    if (result.status !== 0) process.exit(result.status || 1);
+  }
+}
 
-echo "Done. Redeploy with: npx vercel --prod"
+console.log("Done. Redeploy with: npx vercel --prod");
+NODE
