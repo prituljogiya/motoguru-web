@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: true,
   outputFileTracingRoot: path.join(__dirname),
+  async redirects() {
+    return [
+      { source: "/blogs", destination: "/", permanent: true },
+      { source: "/blogs/", destination: "/", permanent: true },
+      { source: "/blogs/:slug", destination: "/", permanent: true },
+      { source: "/blogs/:slug/", destination: "/", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

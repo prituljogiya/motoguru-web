@@ -26,9 +26,6 @@ export default function HomePage() {
                 About Motoguru
               </ButtonLink>
             </div>
-            <p className="mt-6 text-sm font-medium text-foreground/80">
-              +8k Happy users · 4.9/5 from 2k+ reviews
-            </p>
           </div>
           <div className="reveal relative mx-auto w-full max-w-md">
             <div className="absolute -inset-8 rounded-full bg-accent/15 blur-3xl" />
@@ -146,62 +143,11 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 max-w-md text-muted">
               Book verified workshops, compare estimates, and track your service — all from your phone.
-              Available on Google Play and the App Store.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={site.playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
-                aria-label="Get it on Google Play"
-              >
-                <span className="flex h-8 w-8 items-center justify-center" aria-hidden>
-                  <svg width="28" height="28" viewBox="0 0 512 512" fill="none">
-                    <path
-                      fill="#34A853"
-                      d="M325.3 234.3 104.6 13.6C95.6 22.6 90 35.2 90 50.3v411.4c0 15.1 5.6 27.7 14.6 36.7l220.7-220.7 58.3-58.3-58.3-58.1Z"
-                    />
-                    <path
-                      fill="#FBBC04"
-                      d="m383.6 292.6-58.3-58.3-58.3 58.3 58.3 58.3 102.9 59.4c12.1-6.9 20.3-19.4 20.3-35.6 0-7.3-1.8-14.1-5-20L383.6 292.6Z"
-                    />
-                    <path
-                      fill="#4285F4"
-                      d="M383.6 219.4 325.3 277.7l58.3 58.3 102.9-59.4c3.2-5.9 5-12.7 5-20 0-16.2-8.2-28.7-20.3-35.6l-87.6-1.6Z"
-                    />
-                    <path
-                      fill="#EA4335"
-                      d="M325.3 277.7 104.6 498.4c9 9 21.6 13.6 35.7 13.6 8.3 0 16.3-1.9 23.6-5.6l219.7-126.9-58.3-58.3-43.5-43.5Z"
-                    />
-                  </svg>
-                </span>
-                <span className="text-left leading-tight">
-                  <span className="block text-[10px] uppercase tracking-wide text-white/70">
-                    Get it on
-                  </span>
-                  <span className="block text-sm font-semibold">Google Play</span>
-                </span>
-              </a>
-              <a
-                href={site.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-xl bg-ink px-5 py-3 text-white transition hover:bg-ink/90"
-                aria-label="Download on the App Store"
-              >
-                <span className="flex h-8 w-8 items-center justify-center" aria-hidden>
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16.365 1.43c0 1.14-.463 2.21-1.247 3.01-.814.83-2.17 1.47-3.305 1.39-.146-1.12.42-2.29 1.21-3.08.83-.84 2.25-1.44 3.342-1.32zM20.73 17.2c-.59 1.36-.87 1.96-1.63 3.16-1.06 1.66-2.55 3.73-4.4 3.74-1.64.01-2.07-1.07-4.3-1.06-2.24.01-2.71 1.08-4.35 1.07-1.85-.01-3.27-1.89-4.33-3.55C-.07 16.9-.96 12.1.92 8.96c1.33-2.23 3.43-3.53 5.4-3.53 2.01 0 3.28 1.1 4.94 1.1 1.6 0 2.58-1.11 4.95-1.11 1.77 0 3.64 1.02 4.96 2.78-4.36 2.39-3.66 8.61-.44 8.99z" />
-                  </svg>
-                </span>
-                <span className="text-left leading-tight">
-                  <span className="block text-[10px] uppercase tracking-wide text-white/70">
-                    Download on the
-                  </span>
-                  <span className="block text-sm font-semibold">App Store</span>
-                </span>
-              </a>
+            <div className="mt-8 inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-6 py-3">
+              <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-wide text-accent-dark">
+                Coming Soon
+              </span>
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-sm">
@@ -253,14 +199,6 @@ export default function HomePage() {
           </p>
           <div className="relative mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/contact-us/">Contact us</ButtonLink>
-            <a
-              href={site.playStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:border-accent hover:text-accent"
-            >
-              Download the app
-            </a>
           </div>
         </div>
       </section>

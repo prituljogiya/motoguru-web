@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 
-/** Intrinsic logo size: 500 × 236 (≈ 2.12:1). */
-const LOGO_WIDTH = 500;
-const LOGO_HEIGHT = 236;
+/** Stacked MotoGuru logo — 1236 × 1600. */
+const LOGO_WIDTH = 1236;
+const LOGO_HEIGHT = 1600;
 
 type Props = {
   /** Visual height in px; width is derived from the intrinsic ratio. */
@@ -12,7 +12,6 @@ type Props = {
   href?: string | null;
   className?: string;
   priority?: boolean;
-  inverted?: boolean;
 };
 
 export function SiteLogo({
@@ -20,18 +19,17 @@ export function SiteLogo({
   href = "/",
   className = "",
   priority = false,
-  inverted = false,
 }: Props) {
   const width = Math.round((height * LOGO_WIDTH) / LOGO_HEIGHT);
 
   const image = (
     <Image
-      src="/images/mg-2026-web-logo.png"
+      src="/images/motoguru-logo.jpg"
       alt={site.name}
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       priority={priority}
-      className={`object-contain object-left ${inverted ? "brightness-0 invert" : ""} ${className}`}
+      className={`object-contain object-left ${className}`}
       style={{ width, height, maxWidth: "100%" }}
     />
   );

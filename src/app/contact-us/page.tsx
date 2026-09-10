@@ -25,12 +25,6 @@ export default function ContactPage() {
             </div>
             <div>
               <h2 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
-                Mobile No.
-              </h2>
-              <p className="mt-2 text-sm text-muted">{site.phone}</p>
-            </div>
-            <div>
-              <h2 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
                 Email
               </h2>
               <a href={`mailto:${site.email}`} className="mt-2 block text-sm text-accent-dark">

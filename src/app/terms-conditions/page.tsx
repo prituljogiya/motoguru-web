@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -90,11 +91,9 @@ export default function TermsPage() {
           <h2>10. Contact</h2>
           <p>
             Email:{" "}
-            <a href="mailto:support@motoguru.in" className="text-accent-dark">
-              support@motoguru.in
+            <a href={`mailto:${site.email}`} className="text-accent-dark">
+              {site.email}
             </a>
-            <br />
-            Phone: +91 00000 88888
           </p>
         </div>
       </section>

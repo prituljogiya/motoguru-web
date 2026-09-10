@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container-page section-pad grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="mb-4">
-            <SiteLogo height={52} inverted href="/" />
+            <SiteLogo height={52} href="/" />
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-white/70">
             {site.description}
@@ -46,11 +46,6 @@ export function Footer() {
           </h3>
           <ul className="space-y-3 text-sm text-white/75">
             <li>{site.address}</li>
-            <li>
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-accent">
-                {site.phone}
-              </a>
-            </li>
             <li>
               <a href={`mailto:${site.email}`} className="hover:text-accent">
                 {site.email}

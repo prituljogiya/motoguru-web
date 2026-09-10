@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { partnerServices } from "@/content/site";
+import { partnerServices, site } from "@/content/site";
 
 type FormType = "enquiry" | "partner";
 
@@ -69,7 +69,7 @@ export function ContactForm() {
       setMessage(
         error instanceof Error && error.message
           ? error.message
-          : "Could not send right now. Please email support@motoguru.in or try again later."
+          : `Could not send right now. Please email ${site.email} or try again later.`
       );
       refreshCaptcha();
     }

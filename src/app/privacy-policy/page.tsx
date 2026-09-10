@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -88,8 +89,8 @@ export default function PrivacyPage() {
           </ul>
           <p>
             Requests can be sent to:{" "}
-            <a href="mailto:support@motoguru.in" className="text-accent-dark">
-              support@motoguru.in
+            <a href={`mailto:${site.email}`} className="text-accent-dark">
+              {site.email}
             </a>
           </p>
 
@@ -104,8 +105,8 @@ export default function PrivacyPage() {
             Grievance Officer, MotoGuru Technologies Private Limited
             <br />
             Email:{" "}
-            <a href="mailto:support@motoguru.in" className="text-accent-dark">
-              support@motoguru.in
+            <a href={`mailto:${site.email}`} className="text-accent-dark">
+              {site.email}
             </a>
           </p>
 

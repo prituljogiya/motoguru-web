@@ -3,18 +3,15 @@ export const site = {
   tagline: "Trusted Car Specialists",
   description:
     "MotoGuru connects car owners with trusted local garages through technology, delivering transparent pricing, quality service, and effortless automotive care.",
-  email: "support@motoguru.in",
-  phone: "+91 00000 00000",
-  address: "MotoGuru Pvt. Ltd. 123, Tech Park Road, XYZ East, Mumbai — 000000, India",
-  playStoreUrl: "https://play.google.com/store/apps/details?id=in.motoguru.app",
-  appStoreUrl: "https://apps.apple.com/app/motoguru/id0000000000",
+  email: "enquiry@motoguru.in",
+  address:
+    "Office No. 441, 4th Floor, Panchratna Building, Opera House, Mumbai, Maharashtra – 400004.",
 };
 
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about-us/", label: "About Us" },
   { href: "/for-merchant/", label: "For Merchant" },
-  { href: "/blogs/", label: "Blogs" },
   { href: "/frequently-asked-questions/", label: "FAQ" },
   { href: "/contact-us/", label: "Contact Us" },
 ] as const;
