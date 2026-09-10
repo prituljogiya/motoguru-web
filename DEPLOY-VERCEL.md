@@ -76,3 +76,34 @@ npm run deploy:vercel-hook
 ```
 
 Contact forms use `/api/contact/` (nodemailer + SMTP).
+
+---
+
+## Contact form / SMTP not working?
+
+SMTP to `mail.motoguru.in` works when credentials are set. If the form fails on the live site, it is almost always **missing server config**, not broken code.
+
+### Vercel (Node `/api/contact/`)
+
+1. **Settings → Environment Variables** — add all `EMAIL_*` from the table above for **Production** (and Preview if you test preview URLs).
+2. **`EMAIL_PASS`** must be the exact mailbox password for `enquiry@motoguru.in` (no extra quotes).
+3. **Redeploy** after saving env vars (env changes do not apply until redeploy).
+4. **Check config:** open `https://YOUR-VERCEL-URL/api/contact/` in the browser — you should see `{"ok":true,"configured":true}`. If you see `missing: ["EMAIL_PASS", ...]`, add those vars and redeploy.
+
+Local test:
+
+```bash
+cp .env.example .env   # fill EMAIL_PASS
+npm run smtp:test      # sends a test email
+npm run dev
+# submit the contact form, or:
+curl -s http://localhost:3000/api/contact/
+```
+
+### cPanel (PHP `/api/contact.php`)
+
+1. Build with credentials in `.env`: `npm run build:cpanel`
+2. Upload **`out/`** including **`out/api/contact.php`** and **`out/api/smtp-config.php`**
+3. Set `NEXT_PUBLIC_CONTACT_ENDPOINT=/api/contact.php` at build time (the cpanel script does this automatically)
+
+If `smtp-config.php` still has `CHANGE_ME`, run `npm run smtp:config` after filling `.env`.

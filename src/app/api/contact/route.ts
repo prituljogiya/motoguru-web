@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendContactEmail, type ContactPayload } from "@/lib/mail";
+import { missingSmtpEnv, sendContactEmail, type ContactPayload } from "@/lib/mail";
 
 export const runtime = "nodejs";
 
@@ -15,8 +15,40 @@ function servicesFromForm(form: FormData): string[] {
     .filter(Boolean);
 }
 
+export async function GET() {
+  const missing = missingSmtpEnv();
+  if (missing.length > 0) {
+    return NextResponse.json(
+      {
+        ok: false,
+        configured: false,
+        missing,
+        hint: "Add EMAIL_* variables in Vercel → Settings → Environment Variables, then redeploy.",
+      },
+      { status: 503 }
+    );
+  }
+
+  return NextResponse.json({
+    ok: true,
+    configured: true,
+    endpoint: process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact/",
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const missing = missingSmtpEnv();
+    if (missing.length > 0) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Email is not configured on the server (missing: ${missing.join(", ")}).`,
+        },
+        { status: 503 }
+      );
+    }
+
     const form = await request.formData();
     const formType = field(form, "form_type");
 
@@ -68,9 +100,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("[contact]", error);
     const message =
-      error instanceof Error && error.message.startsWith("Missing required environment variable")
-        ? error.message
-        : "Unable to send email right now. Please try again later.";
+      error instanceof Error ? error.message : "Unable to send email right now. Please try again later.";
     return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }

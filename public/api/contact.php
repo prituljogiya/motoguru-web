@@ -149,7 +149,8 @@ try {
     ]);
     respond(200, ['ok' => true]);
 } catch (Throwable $e) {
-    respond(500, ['ok' => false, 'error' => 'Unable to send email right now. Please try again later.']);
+    error_log('Motoguru contact SMTP: ' . $e->getMessage());
+    respond(500, ['ok' => false, 'error' => 'Unable to send email right now. Please try again later or email enquiry@motoguru.in.']);
 }
 
 /**
