@@ -38,7 +38,7 @@ const host = env.EMAIL_HOST || "mail.yourdomain.com";
 const port = Number(env.EMAIL_PORT || 465);
 const secure = (env.EMAIL_SECURE || (port === 465 ? "ssl" : "tls")).toLowerCase();
 const user = env.EMAIL_USER || "noreply@yourdomain.com";
-const pass = env.EMAIL_PASS || "CHANGE_ME";
+const pass = env.EMAIL_PASS || "";
 const fromEmail = env.EMAIL_FROM || user;
 const fromName = env.EMAIL_FROM_NAME || "Motoguru Website";
 const toEmail = env.EMAIL_TO || user;
@@ -63,6 +63,12 @@ return [
     'timeout' => 30,
 ];
 `;
+
+if (!pass || pass === "CHANGE_ME") {
+  console.warn(
+    "Warning: EMAIL_PASS is not set — public/api/smtp-config.php will not work until you add credentials to .env and run npm run smtp:config"
+  );
+}
 
 const outPath = path.join(root, "public", "api", "smtp-config.php");
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
