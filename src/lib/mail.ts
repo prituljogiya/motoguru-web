@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 
 export type ContactPayload = {
-  formType: "enquiry" | "partner";
+  formType: "enquiry" | "partner" | "notify";
   email: string;
   phone: string;
   city: string;
@@ -66,6 +66,19 @@ export function createSmtpTransport() {
 }
 
 export function buildEmail(payload: ContactPayload): { subject: string; text: string } {
+  if (payload.formType === "notify") {
+    return {
+      subject: `MotoGuru app notify request from ${payload.fullName}`,
+      text: [
+        "Form: App launch — Notify Me",
+        `Full name: ${payload.fullName}`,
+        `Phone: ${payload.phone}`,
+        `Email: ${payload.email}`,
+        `City: ${payload.city}`,
+      ].join("\n"),
+    };
+  }
+
   if (payload.formType === "enquiry") {
     return {
       subject: `Motoguru General Enquiry from ${payload.fullName}`,
