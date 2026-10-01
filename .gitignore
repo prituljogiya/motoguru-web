@@ -19,6 +19,7 @@
 
 # production
 /build
+motoguru-cpanel-upload.zip
 
 # misc
 .DS_Store
