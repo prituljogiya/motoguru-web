@@ -8,6 +8,7 @@
     "build": "next build",
     "build:cpanel": "node scripts/build-cpanel.js",
     "package:cpanel": "node scripts/package-cpanel.js",
+    "package:cpanel-public": "node scripts/package-cpanel-public.js",
     "start": "next start",
     "lint": "eslint",
     "smtp:config": "node scripts/generate-smtp-config.js",

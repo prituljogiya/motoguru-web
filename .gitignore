@@ -20,8 +20,10 @@
 # production
 /build
 motoguru-cpanel-upload.zip
-/download/*.zip
 /download/cpanel-public_html/
+/download/motoguru-cpanel-upload.zip
+/download/*.zip
+!important /download/cpanel-upload.zip
 /Downloads/*.zip
 
 # misc
