@@ -20,8 +20,10 @@
 # production
 /build
 motoguru-cpanel-upload.zip
-/download/*.zip
 /download/cpanel-public_html/
+/download/motoguru-cpanel-upload.zip
+/download/*.zip
+!important /download/cpanel-upload.zip
 /Downloads/*.zip
 
 # misc
@@ -35,7 +37,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
 !.env.example
 
 # cPanel SMTP secrets (keep example only)
@@ -51,3 +52,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+config.bat
