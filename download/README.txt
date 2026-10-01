@@ -1,18 +1,22 @@
-MotoGuru cPanel upload package
-=============================
+cPanel — upload directly to public_html
+======================================
 
-Download this file to your computer (right-click in Cursor → Download):
+OPTION A — ZIP (easiest)
+  File: download/motoguru-cpanel-upload.zip
+  cPanel → File Manager → public_html → Upload zip → Extract
+  After extract you must see: public_html/index.html and public_html/api/contact.php
 
-  motoguru-cpanel-upload.zip
+OPTION B — FOLDER
+  Copy everything INSIDE this folder into public_html (not the folder itself):
+  download/cpanel-public_html/
+  So public_html/index.html is at the top level.
 
-Then in cPanel File Manager:
-  1. Open public_html
-  2. Upload the zip
-  3. Extract All
-  4. Confirm public_html/api/contact.php and public_html/api/smtp-config.php exist
+Full path on this machine:
+  /workspace/download/motoguru-cpanel-upload.zip
+  /workspace/download/cpanel-public_html/
 
-The zip is not stored on GitHub (it contains mail settings). Regenerate on this machine with:
-
+Regenerate after code changes:
   npm run package:cpanel
+  (requires .env with EMAIL_PASS)
 
-(requires .env with EMAIL_* filled in)
+Do not commit the zip or cpanel-public_html to GitHub (mail settings inside).

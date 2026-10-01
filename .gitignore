@@ -21,6 +21,7 @@
 /build
 motoguru-cpanel-upload.zip
 /download/*.zip
+/download/cpanel-public_html/
 /Downloads/*.zip
 
 # misc
