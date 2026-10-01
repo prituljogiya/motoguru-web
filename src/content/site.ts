@@ -1,8 +1,11 @@
 export const site = {
   name: "Motoguru",
   tagline: "Trusted Car Specialists",
+  heroHeadline: "Verified Garages. Transparent Pricing. Zero Surprises.",
+  heroSubtext:
+    "MotoGuru helps you find the right workshop for your car, approve exact costs, and follow the work progress till delivery.",
   description:
-    "MotoGuru connects car owners with trusted local garages through technology, delivering transparent pricing, quality service, and effortless automotive care.",
+    "MotoGuru helps you find the right workshop for your car, approve exact costs, and follow the work progress till delivery.",
   email: "enquiry@motoguru.in",
   address:
     "Office No. 441, 4th Floor, Panchratna Building, Opera House, Mumbai, Maharashtra – 400004.",
@@ -52,7 +55,7 @@ export const whyChoose = [
       "Review what’s included before you book. No hidden add-ons — additional work needs your approval first.",
   },
   {
-    title: "Live job visibility",
+    title: "Real-time tracking",
     description:
       "Track progress with real-time updates so you always know where your car stands, from drop-off to delivery.",
   },

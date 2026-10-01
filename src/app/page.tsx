@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BackgroundDecor } from "@/components/BackgroundDecor";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { NotifyMeForm } from "@/components/NotifyMeForm";
 import { faqs, services, site, whyChoose } from "@/content/site";
 
 export default function HomePage() {
@@ -11,14 +12,11 @@ export default function HomePage() {
         <BackgroundDecor variant="hero" />
         <div className="container-page relative z-[1] grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
           <div>
-            <p className="reveal mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent-dark">
-              {site.tagline}
-            </p>
-            <h1 className="reveal font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.08] tracking-tight text-ink md:text-5xl lg:text-[3.4rem]">
-              Transparent Car Care, Powered Digitally
+            <h1 className="reveal font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.12] tracking-tight text-ink md:text-5xl lg:text-[3.15rem]">
+              {site.heroHeadline}
             </h1>
             <p className="reveal-delay mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-              {site.description}
+              {site.heroSubtext}
             </p>
             <div className="reveal-delay mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/contact-us/">Get Started</ButtonLink>
@@ -27,18 +25,23 @@ export default function HomePage() {
               </ButtonLink>
             </div>
           </div>
-          <div className="reveal relative mx-auto w-full max-w-md">
+          <div className="reveal relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-8 rounded-full bg-accent/15 blur-3xl" />
-            <div className="decor-float absolute -left-4 top-10 hidden h-14 w-14 rounded-2xl border border-white/70 bg-white/55 shadow-[0_12px_30px_rgba(45,0,0,0.08)] md:block" />
-            <div className="decor-float-slow absolute -right-2 bottom-16 hidden h-10 w-10 rounded-full border border-accent/40 bg-accent/20 md:block" />
-            <Image
-              src="/images/mg-phone-graphic.png"
-              alt="Motoguru app preview"
-              width={800}
-              height={840}
-              className="relative mx-auto drop-shadow-2xl"
-              priority
-            />
+            <div className="relative overflow-hidden rounded-[2rem] border border-line/60 bg-white/80 shadow-[0_24px_60px_rgba(45,0,0,0.12)]">
+              <Image
+                src="/images/mg-phone-graphic.png"
+                alt="Motoguru app booking preview"
+                width={800}
+                height={840}
+                className="mx-auto h-[min(420px,70vw)] w-full scale-[1.35] object-cover object-[50%_18%]"
+                priority
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/90 to-transparent px-5 pb-5 pt-16">
+                <span className="inline-flex rounded-full bg-accent px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-ink">
+                  Simple booking
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -95,16 +98,9 @@ export default function HomePage() {
         />
         <div className="container-page relative z-[1] grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
-              Why Choose Us
-            </p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
-              Professional car care with complete clarity
+            <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold md:text-4xl">
+              Why Book Through MotoGuru?
             </h2>
-            <p className="mt-4 max-w-xl text-white/70">
-              Motoguru is built for car owners who want verified workshops, honest pricing, and full
-              visibility — without pressure or surprises.
-            </p>
             <ol className="mt-10 space-y-0 divide-y divide-white/10 border-y border-white/10">
               {whyChoose.map((item, index) => (
                 <li key={item.title} className="grid grid-cols-[auto_1fr] gap-5 py-5">
@@ -139,29 +135,25 @@ export default function HomePage() {
               Get the app
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold text-ink md:text-4xl">
-              Download Motoguru
+              The MotoGuru app is launching soon
             </h2>
             <p className="mt-4 max-w-md text-muted">
-              Book verified workshops, compare estimates, and track your service — all from your phone.
+              Leave your details and we&apos;ll notify you when you can book workshops, compare estimates,
+              and track service from your phone.
             </p>
-            <div className="mt-8 inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-6 py-3">
-              <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-wide text-accent-dark">
-                Coming Soon
-              </span>
-            </div>
+            <NotifyMeForm />
           </div>
           <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-4 rounded-[2rem] bg-accent/15 blur-2xl" />
-            <video
-              className="relative w-full"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/images/mg-phone-graphic.png"
-            >
-              <source src="/images/motoguru-download-app-website-graphic.mp4" type="video/mp4" />
-            </video>
+            <div className="relative overflow-hidden rounded-[2.5rem] border-[10px] border-ink bg-ink shadow-2xl">
+              <Image
+                src="/images/mg-phone-graphic.png"
+                alt="MotoGuru app on phone"
+                width={800}
+                height={840}
+                className="h-auto w-full scale-110 object-cover object-[50%_15%]"
+              />
+            </div>
           </div>
         </div>
       </section>

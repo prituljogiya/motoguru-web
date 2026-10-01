@@ -52,7 +52,7 @@ function respond(int $code, array $payload): void
 }
 
 $formType = field('form_type');
-if (!in_array($formType, ['enquiry', 'partner'], true)) {
+if (!in_array($formType, ['enquiry', 'partner', 'notify'], true)) {
     respond(400, ['ok' => false, 'error' => 'Invalid form type.']);
 }
 
@@ -67,7 +67,20 @@ if (!$email || $phone === '' || $city === '') {
 $lines = [];
 $subject = '';
 
-if ($formType === 'enquiry') {
+if ($formType === 'notify') {
+    $fullName = field('full_name');
+    if ($fullName === '') {
+        respond(400, ['ok' => false, 'error' => 'Please fill in all required fields.']);
+    }
+    $subject = 'MotoGuru app notify request from ' . $fullName;
+    $lines = [
+        'Form: App launch — Notify Me',
+        'Full name: ' . $fullName,
+        'Phone: ' . $phone,
+        'Email: ' . $email,
+        'City: ' . $city,
+    ];
+} elseif ($formType === 'enquiry') {
     $fullName = field('full_name');
     $message = field('message');
     if ($fullName === '' || $message === '') {
