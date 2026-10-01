@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     const form = await request.formData();
     const formType = field(form, "form_type");
 
-    if (formType !== "enquiry" && formType !== "partner") {
+    if (formType !== "enquiry" && formType !== "partner" && formType !== "notify") {
       return NextResponse.json({ ok: false, error: "Invalid form type." }, { status: 400 });
     }
 
@@ -74,7 +74,15 @@ export async function POST(request: NextRequest) {
       city,
     };
 
-    if (formType === "enquiry") {
+    if (formType === "notify") {
+      payload.fullName = field(form, "full_name");
+      if (!payload.fullName) {
+        return NextResponse.json(
+          { ok: false, error: "Please fill in all required fields." },
+          { status: 400 }
+        );
+      }
+    } else if (formType === "enquiry") {
       payload.fullName = field(form, "full_name");
       payload.message = field(form, "message");
       if (!payload.fullName || !payload.message) {
